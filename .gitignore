@@ -1,0 +1,21 @@
+# Файли, що генеруються системою
+.DS_Store
+.env
+
+# Залежності
+/node_modules
+/server/node_modules
+
+# Продакшн білди
+/dist
+/server/dist
+
+# Логи, тимчасові файли та файли кешу
+npm-debug.log*
+yarn-debug.log*
+*.log
+
+# Тимчасові файли редактора VSCode
+.vscode/
+
+mongo.txt
