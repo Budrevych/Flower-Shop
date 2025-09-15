@@ -23,7 +23,7 @@ const Product = mongoose.model(
     image: String,
     isBouquet: Boolean,
     isFavorite: Boolean,
-    dateAdded: { type: Date, default: Date.now },
+    dateAdded: { type: Date, default: new Date().toLocaleString() },
   })
 );
 

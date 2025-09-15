@@ -37,7 +37,7 @@ const Product = mongoose.model(
     image: String,
     isBouquet: Boolean,
     isFavorite: Boolean,
-    dateAdded: { type: Date, default: Date.now },
+    dateAdded: { type: Date, default: new Date().toLocaleString() },
   })
 );
 
@@ -49,7 +49,7 @@ const Order = mongoose.model(
     phone: String,
     address: String,
     total: Number,
-    createdAt: { type: Date, default: Date.now },
+    createdAt: { type: Date, default: new Date().toLocaleString() },
     items: [
       {
         productId: mongoose.Schema.Types.ObjectId,
