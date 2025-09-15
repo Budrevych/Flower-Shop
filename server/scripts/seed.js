@@ -37,46 +37,46 @@ async function run() {
   await Shop.deleteMany({});
   await Product.deleteMany({});
 
-  const shop1 = new Shop({
+  const TheSecretGarden = new Shop({
     name: "The Secret Garden",
     address: "вул. Наукова, 24",
     lat: 49.80627,
     lng: 24.00141,
   });
-  const shop2 = new Shop({
+  const BloomStudio = new Shop({
     name: "Bloom Studio",
     address: "вул. Тараса Шевченка, 12",
     lat: 49.84302,
     lng: 24.01715,
   });
-  const shop3 = new Shop({
+  const SunshineFlowers = new Shop({
     name: "Sunshine Flowers",
     address: "вул. Січових Стрільців, 1",
     lat: 49.84129,
     lng: 24.02574,
   });
-  const shop4 = new Shop({
+  const BloomBeyond = new Shop({
     name: "Bloom & Beyond",
     address: "вул. Володимира Великого, 50",
     lat: 49.81208,
     lng: 23.99066,
   });
-  const shop5 = new Shop({
+  const FlowerBoutique = new Shop({
     name: "Flower Boutique",
     address: "просп. Свободи, 10",
     lat: 49.84057,
     lng: 24.02919,
   });
 
-  await shop1.save();
-  await shop2.save();
-  await shop3.save();
-  await shop4.save();
-  await shop5.save();
+  await TheSecretGarden.save();
+  await BloomStudio.save();
+  await SunshineFlowers.save();
+  await BloomBeyond.save();
+  await FlowerBoutique.save();
 
   const products = [
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Букет червоних троянд (25 шт.)",
       price: 1800,
       image:
@@ -85,7 +85,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Букет білих троянд (15 шт.)",
       price: 1200,
       image:
@@ -94,7 +94,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Тюльпани мікс (21 шт.)",
       price: 950,
       image:
@@ -103,7 +103,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Півонії рожеві (9 шт.)",
       price: 1350,
       image:
@@ -112,7 +112,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Соняшники (7 шт.)",
       price: 700,
       image:
@@ -121,7 +121,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Гортензії блакитні (5 шт.)",
       price: 1750,
       image:
@@ -130,7 +130,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Букет ромашок (15 шт.)",
       price: 600,
       image:
@@ -139,7 +139,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Орхідея фаленопсис (1 гілка)",
       price: 850,
       image:
@@ -148,7 +148,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Букет гвоздик (19 шт.)",
       price: 700,
       image:
@@ -157,7 +157,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Іриси фіолетові (11 шт.)",
       price: 950,
       image:
@@ -166,7 +166,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Букет 'Весняний аромат' (мікс)",
       price: 1150,
       image: "https://floren.com.ua/images/ins/b/buket-1-1739453282.jpg",
@@ -174,7 +174,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Хризантеми жовті (15 шт.)",
       price: 850,
       image:
@@ -183,7 +183,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Букет 'Ніжність' (троянди + лілії)",
       price: 1600,
       image:
@@ -192,7 +192,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop1._id,
+      shopId: TheSecretGarden._id,
       name: "Кали білі (7 шт.)",
       price: 1350,
       image:
@@ -202,7 +202,7 @@ async function run() {
     },
 
     {
-      shopId: shop2._id,
+      shopId: BloomStudio._id,
       name: "Троянди рожеві (21 шт.)",
       price: 1500,
       image:
@@ -211,7 +211,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop2._id,
+      shopId: BloomStudio._id,
       name: "Букет 'Літній мікс'",
       price: 1100,
       image:
@@ -220,7 +220,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop2._id,
+      shopId: BloomStudio._id,
       name: "Альстромерії (11 шт.)",
       price: 950,
       image:
@@ -229,7 +229,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop2._id,
+      shopId: BloomStudio._id,
       name: "Букет 'Ранкова роса' (м'які пастельні тони)",
       price: 1250,
       image:
@@ -238,7 +238,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop2._id,
+      shopId: BloomStudio._id,
       name: "Букет 'Осінній настрій'",
       price: 1350,
       image:
@@ -248,7 +248,7 @@ async function run() {
     },
 
     {
-      shopId: shop3._id,
+      shopId: SunshineFlowers._id,
       name: "Тюльпани білі (15 шт.)",
       price: 850,
       image: "https://flowersdelux.com.ua/wp-content/uploads/2018/11/1-6.jpg",
@@ -256,7 +256,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop3._id,
+      shopId: SunshineFlowers._id,
       name: "Півонії червоні (7 шт.)",
       price: 1250,
       image: "https://viaflor.com.ua/edit/uploads/page/2486/66734c641d5de.jpg",
@@ -264,7 +264,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop3._id,
+      shopId: SunshineFlowers._id,
       name: "Букет 'Класика'",
       price: 4750,
       image:
@@ -273,7 +273,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop3._id,
+      shopId: SunshineFlowers._id,
       name: "Хризантеми білі (11 шт.)",
       price: 900,
       image:
@@ -282,7 +282,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop3._id,
+      shopId: SunshineFlowers._id,
       name: "Букет 'Фіолетова мрія'",
       price: 1550,
       image:
@@ -291,7 +291,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop3._id,
+      shopId: SunshineFlowers._id,
       name: "Соняшники (9 шт.)",
       price: 850,
       image:
@@ -300,7 +300,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop3._id,
+      shopId: SunshineFlowers._id,
       name: "Букет 'Елегантність' (стримані тони)",
       price: 1750,
       image: "https://flowers.ua/images/Flowers/articles/886-img-1.jpg",
@@ -308,7 +308,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop3._id,
+      shopId: SunshineFlowers._id,
       name: "Кали рожеві (5 шт.)",
       price: 950,
       image:
@@ -317,7 +317,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop3._id,
+      shopId: SunshineFlowers._id,
       name: "Букет 'Лавандове щастя'",
       price: 1350,
       image: "https://elitbuket.com/wp-content/uploads/2020/07/img_9990.jpg",
@@ -326,7 +326,7 @@ async function run() {
     },
 
     {
-      shopId: shop4._id,
+      shopId: BloomBeyond._id,
       name: "Букет ромашок польових",
       price: 500,
       image:
@@ -335,7 +335,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop4._id,
+      shopId: BloomBeyond._id,
       name: "Лілії білі (9 шт.)",
       price: 1450,
       image:
@@ -344,7 +344,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop4._id,
+      shopId: BloomBeyond._id,
       name: "Букет 'Лісова казка' (зелений мікс)",
       price: 1600,
       image:
@@ -353,7 +353,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop4._id,
+      shopId: BloomBeyond._id,
       name: "Хризантеми рожеві (13 шт.)",
       price: 950,
       image:
@@ -362,7 +362,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop4._id,
+      shopId: BloomBeyond._id,
       name: "Букет 'Зелена свіжість' (фоліаж + квіти)",
       price: 1250,
       image:
@@ -371,7 +371,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop4._id,
+      shopId: BloomBeyond._id,
       name: "Альстромерії рожеві (9 шт.)",
       price: 1150,
       image: "https://flori1.com/images/watermarked/1/detailed/2/8556.jpg",
@@ -379,7 +379,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop4._id,
+      shopId: BloomBeyond._id,
       name: "Букет 'Ранковий бриз'",
       price: 1400,
       image:
@@ -389,7 +389,7 @@ async function run() {
     },
 
     {
-      shopId: shop5._id,
+      shopId: FlowerBoutique._id,
       name: "Троянди червоні (15 шт.)",
       price: 1350,
       image:
@@ -398,16 +398,16 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop5._id,
+      shopId: FlowerBoutique._id,
       name: "Тюльпани жовті (19 шт.)",
       price: 900,
       image:
-        "hhttps://dicentra.ua/assets/images/products/578/ef6c6fada6a5ffefbbb438733e475de67dac831c.jpg",
+        "https://osocorflowers.com/wp-content/uploads/2023/02/img_7562.png",
       isBouquet: true,
       isFavorite: false,
     },
     {
-      shopId: shop5._id,
+      shopId: FlowerBoutique._id,
       name: "Букет 'Романтика' (роза + півонії)",
       price: 1750,
       image:
@@ -416,7 +416,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop5._id,
+      shopId: FlowerBoutique._id,
       name: "Лілії рожеві (7 шт.)",
       price: 1450,
       image:
@@ -425,7 +425,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop5._id,
+      shopId: FlowerBoutique._id,
       name: "Букет 'Зимова магія'",
       price: 1800,
       image: "https://flowerstyle.com.ua/pic/images/IMG_9213.jpg",
@@ -433,7 +433,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop5._id,
+      shopId: FlowerBoutique._id,
       name: "Букет 'Літній настрій' (яскраві тони)",
       price: 1250,
       image:
@@ -442,7 +442,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop5._id,
+      shopId: FlowerBoutique._id,
       name: "Букет 'Теплий вечір' (теплі відтінки)",
       price: 1650,
       image:
@@ -451,7 +451,7 @@ async function run() {
       isFavorite: false,
     },
     {
-      shopId: shop5._id,
+      shopId: FlowerBoutique._id,
       name: "Букет 'Весняний рай' (світлий мікс)",
       price: 1400,
       image:
