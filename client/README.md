@@ -1,49 +1,12 @@
-import { useEffect, useState } from "react";
+# React + Vite
 
-export default function ProductsTest() {
-const [products, setProducts] = useState([]);
-const [loading, setLoading] = useState(true);
-const [waking, setWaking] = useState(false);
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-useEffect(() => {
-const fetchProducts = async () => {
-try {
-const res = await fetch(
-"https://flower-shop-8jgt.onrender.com/api/shops/68c7458bf8a58d81eb35432e/products"
-);
+Currently, two official plugins are available:
 
-        if (!res.ok) throw new Error("Сервер ще не відповідає");
-        const data = await res.json();
-        setProducts(data);
-      } catch (err) {
-        console.warn("Може сервер ще прокидається…", err);
-        setWaking(true);
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-        // Пробуємо ще раз через 5 секунд
-        setTimeout(fetchProducts, 5000);
-      } finally {
-        setLoading(false);
-      }
-    };
+## Expanding the ESLint configuration
 
-    fetchProducts();
-
-}, []);
-
-if (loading) return <p>Завантаження...</p>;
-if (waking) return <p>Сервер прокидається... Спробуйте зачекати кілька секунд ⏳</p>;
-
-return (
-<div>
-<h2>Продукти</h2>
-<ul>
-{products.map((p) => (
-<li key={p._id}>
-<img src={p.image} alt={p.name} width="150" />
-<p>{p.name} – {p.price} грн</p>
-</li>
-))}
-</ul>
-</div>
-);
-}
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
