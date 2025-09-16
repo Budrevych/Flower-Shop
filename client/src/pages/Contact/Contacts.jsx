@@ -4,7 +4,7 @@ import { ShopContext } from "../../components/providers/context/ShopContext";
 import { Header } from "../../components/HomeComponents/Header";
 
 export function Contacts() {
-  const { shops, selectedShop, setSelectedShop } = useContext(ShopContext);
+  const { shops } = useContext(ShopContext);
 
   return (
     <>
@@ -16,30 +16,34 @@ export function Contacts() {
         <h2 className="text-2xl font-bold mb-4  text-black-500 font-family">
           Shops:
         </h2>
+        <section>
+          {shops.map((shop) => (
+            <div
+              key={shop._id}
+              className="mb-6 p-4 border rounded-lg shadow font-family"
+            >
+              <h4 className="text-xl font-semibold">{shop.name}</h4>
+              <p>📍 {shop.address}</p>
+              <a href="tel:+380977665544" className="block">
+                📞 +38 (097) 76 65 544
+              </a>
+              <a href={`mailto:${shop.name}@example.com`} className="block">
+                📬 {shop.name}@example.com
+              </a>
+              <p>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${shop.lat},${shop.lng}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-yellow-700 underline"
+                >
+                  📍 Відкрити на мапі
+                </a>
+              </p>
+            </div>
+          ))}
+        </section>
       </div>
     </>
   );
-}
-
-{
-  /* <div>
-  <h2 className="text-2xl font-bold mb-4 text-center text-black-500">Shops</h2>
-  <ul className="space-y-2">
-    {Array.isArray(shops) &&
-      shops.map((shop) => (
-        <li key={shop._id}>
-          <button
-            onClick={() => setSelectedShop(shop)}
-            className={`w-full p-3 rounded-lg text-left transition-colors duration-200 hover:cursor-pointer ${
-              selectedShop && selectedShop._id === shop._id
-                ? "bg-yellow-700 text-white"
-                : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-            }`}
-          >
-            {shop.name}
-          </button>
-        </li>
-      ))}
-  </ul>
-</div>; */
 }
