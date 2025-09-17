@@ -3,7 +3,8 @@ import { createContext, useState, useEffect } from "react";
 export const ShopContext = createContext();
 
 export function ShopProvider({ children }) {
-  const backendUrl = "https://flower-shop-8jgt.onrender.com";
+  const backendUrl =
+    import.meta.env.VITE_BACKEND_URL || "https://flower-shop-8jgt.onrender.com";
 
   const [shops, setShops] = useState([]);
   const [products, setProducts] = useState([]);
