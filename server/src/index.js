@@ -45,6 +45,7 @@ const Order = mongoose.model(
   "Order",
   new mongoose.Schema({
     shopId: mongoose.Schema.Types.ObjectId,
+    shopName: String,
     name: String,
     email: String,
     phone: String,
@@ -78,12 +79,13 @@ app.get("/api/shops/:id/products", async (req, res) => {
 });
 
 app.post("/api/orders", async (req, res) => {
-  const { shopId, name, email, phone, address, items } = req.body;
+  const { shopId, shopName, name, email, phone, address, items } = req.body;
   if (!items || !items.length)
     return res.status(400).json({ error: "Empty cart" });
   const total = items.reduce((s, it) => s + it.price * it.quantity, 0);
   const order = new Order({
     shopId,
+    shopName,
     name,
     email,
     phone,
