@@ -78,6 +78,9 @@ export function Orders() {
             <h2 className="text-2xl font-semibold mb-4">
               Order ID: {order._id}
             </h2>
+            <h3 className="mb-2">
+              <strong>Shop:</strong> {order.shopName}
+            </h3>
             <p className="mb-2">
               <strong>Name:</strong> {order.name}
             </p>

@@ -39,6 +39,7 @@ export function FormCart() {
 
     const orderData = {
       shopId: selectedShop?._id,
+      shopName: selectedShop?.name,
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
