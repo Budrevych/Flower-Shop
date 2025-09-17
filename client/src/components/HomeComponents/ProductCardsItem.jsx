@@ -1,18 +1,29 @@
-import { useContext, useCallback } from "react";
+import { useState, useContext, useCallback } from "react";
 import { ShopContext } from "../../components/providers/context/ShopContext";
 
 import Favorite from "../../assets/img/Favorite.svg";
 import Unfavorite from "../../assets/img/Unfavorite.svg";
 export function ProductCardsItem({ product }) {
-  const { products, setProducts, addToCart } = useContext(ShopContext);
+  const { setProducts, addToCart, favorites, toggleFavorite } =
+    useContext(ShopContext);
 
-  const onFavoriteClick = useCallback((id) => {
-    setProducts((products) =>
-      products.map((item) =>
-        item._id !== id ? item : { ...item, isFavorite: !item.isFavorite }
-      )
-    );
-  }, []);
+  const [showToast, setShowToast] = useState(false);
+  const [toastVisible, setToastVisible] = useState(false);
+
+  const isFavorite = favorites.includes(product._id);
+
+  const onFavoriteClick = () => {
+    toggleFavorite(product._id);
+  };
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setShowToast(true);
+    setToastVisible(true);
+
+    setTimeout(() => setToastVisible(false), 1300);
+    setTimeout(() => setShowToast(false), 1600);
+  };
 
   return (
     <>
@@ -39,21 +50,34 @@ export function ProductCardsItem({ product }) {
           })}
         </p>
         <img
-          onClick={() => onFavoriteClick(product._id)}
+          onClick={onFavoriteClick}
           className="w-5 h-5 cursor-pointer mb-2"
-          src={product.isFavorite ? Favorite : Unfavorite}
+          src={isFavorite ? Favorite : Unfavorite}
           alt="isFavorite"
         />
       </div>
 
-      <div className="flex flex-col items-start mt-2">
+      <div className="relative flex flex-col items-start mt-2">
         <span className="text-2xl font-bold mb-2">{product.price} ₴</span>
         <button
-          onClick={() => addToCart(product)}
+          onClick={() => handleAddToCart(product)}
           className="w-full px-4 py-2 bg-yellow-700 text-white rounded-lg shadow hover:bg-yellow-700/65 transition-colors duration-200"
         >
           Додати в кошик
         </button>
+
+        {showToast && (
+          <div
+            className={`absolute top-0 left-1/2 -translate-x-1/2 bg-orange-300 text-white px-4 py-2 rounded-md shadow-lg mt-2 transition-all duration-300 ease-in-out
+            ${
+              toastVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 -translate-y-3"
+            }`}
+          >
+            Додано до кошика!
+          </div>
+        )}
       </div>
     </>
   );

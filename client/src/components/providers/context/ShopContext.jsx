@@ -15,6 +15,11 @@ export function ShopProvider({ children }) {
     return saved ? JSON.parse(saved) : [];
   });
 
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem("favorites");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const addToCart = (product) => {
     setCart((prev) => {
       const existing = prev.find((item) => item._id === product._id);
@@ -62,6 +67,19 @@ export function ShopProvider({ children }) {
     return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   };
 
+  const toggleFavorite = (productId) => {
+    setFavorites((prev) => {
+      let updated;
+      if (prev.includes(productId)) {
+        updated = prev.filter((id) => id !== productId);
+      } else {
+        updated = [...prev, productId];
+      }
+      localStorage.setItem("favorites", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
   useEffect(() => {
     fetch(`${backendUrl}/api/shops`)
       .then((res) => res.json())
@@ -87,6 +105,10 @@ export function ShopProvider({ children }) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
   return (
     <ShopContext.Provider
       value={{
@@ -103,6 +125,8 @@ export function ShopProvider({ children }) {
         removeFromCart,
         decreaseQuantity,
         getTotal,
+        favorites,
+        toggleFavorite,
       }}
     >
       {children}

@@ -4,12 +4,15 @@ import { ShopContext } from "../../components/providers/context/ShopContext";
 import { ProductCardsItem } from "./ProductCardsItem";
 
 export function ProductCards() {
-  const { products, selectedShop } = useContext(ShopContext);
+  const { products, selectedShop, favorites } = useContext(ShopContext);
 
   const [sortBy, setSortBy] = useState("default");
 
   const sortedProducts = useMemo(() => {
-    let sorted = [...products];
+    let sorted = products.map((product) => ({
+      ...product,
+      isFavorite: favorites.includes(product._id),
+    }));
 
     if (sortBy === "price-asc") {
       sorted.sort((a, b) => a.price - b.price);
@@ -21,10 +24,10 @@ export function ProductCards() {
       sorted.sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded));
     }
 
-    sorted.sort((a, b) => (b.isFavorite === true) - (a.isFavorite === true));
+    sorted.sort((a, b) => (b.isFavorite ? 1 : 0) - (a.isFavorite ? 1 : 0));
 
     return sorted;
-  }, [products, sortBy]);
+  }, [products, sortBy, favorites]);
 
   return (
     <>

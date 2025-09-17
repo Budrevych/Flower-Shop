@@ -72,45 +72,47 @@ export function Orders() {
             {error && <p className="text-red-500 mt-2">{error}</p>}
           </form>
         )}
+        <div>
+          {order && (
+            <div className="border rounded-lg p-6 shadow-md bg-bisque-100">
+              <h2 className="text-2xl sm:text-xl font-semibold mb-4 break-words">
+                Order ID: {order._id}
+              </h2>
+              <h3 className="mb-2">
+                <strong>Shop:</strong> {order.shopName}
+              </h3>
+              <p className="mb-2">
+                <strong>Name:</strong> {order.name}
+              </p>
+              <p className="mb-2">
+                <strong>Email:</strong> {order.email}
+              </p>
+              <p className="mb-2">
+                <strong>Phone:</strong> {order.phone}
+              </p>
+              <p className="mb-2">
+                <strong>Address:</strong> {order.address}
+              </p>
+              <p className="mb-4">
+                <strong>Total:</strong> {order.total} ₴
+              </p>
+              <p className="mb-4">
+                <strong>Date:</strong>{" "}
+                {new Date(order.createdAt).toLocaleString("uk-UA")}
+              </p>
 
-        {order && (
-          <div className="border rounded-lg p-6 shadow-md bg-bisque-100">
-            <h2 className="text-2xl font-semibold mb-4">
-              Order ID: {order._id}
-            </h2>
-            <h3 className="mb-2">
-              <strong>Shop:</strong> {order.shopName}
-            </h3>
-            <p className="mb-2">
-              <strong>Name:</strong> {order.name}
-            </p>
-            <p className="mb-2">
-              <strong>Email:</strong> {order.email}
-            </p>
-            <p className="mb-2">
-              <strong>Phone:</strong> {order.phone}
-            </p>
-            <p className="mb-2">
-              <strong>Address:</strong> {order.address}
-            </p>
-            <p className="mb-4">
-              <strong>Total:</strong> {order.total} ₴
-            </p>
-            <p className="mb-4">
-              <strong>Date:</strong>{" "}
-              {new Date(order.createdAt).toLocaleString("uk-UA")}
-            </p>
-
-            <h3 className="text-xl font-semibold mb-2">Items:</h3>
-            <ul className="list-disc list-inside">
-              {order.items.map((item) => (
-                <li key={item._id}>
-                  {item.name} × {item.quantity} = {item.price * item.quantity} ₴
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+              <h3 className="text-xl font-semibold mb-2">Items:</h3>
+              <ul className="list-disc list-inside">
+                {order.items.map((item) => (
+                  <li key={item._id}>
+                    {item.name} × {item.quantity} = {item.price * item.quantity}{" "}
+                    ₴
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
