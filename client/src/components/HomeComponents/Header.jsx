@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { ShopContext } from "../../components/providers/context/ShopContext";
 
+import Logo from "../../assets/img/Flower-shop-Logo.svg";
 import Shopping from "../../assets/img/Shopping.svg";
 
 export function Header() {
@@ -13,11 +14,7 @@ export function Header() {
   return (
     <header>
       <div className="pt-10">
-        <img
-          className="w-40 h-40 mx-auto"
-          src="../../public/Flower-shop-Logo.svg"
-          alt="Flower Shop Logo"
-        />
+        <img className="w-40 h-40 mx-auto" src={Logo} alt="Flower Shop Logo" />
       </div>
       <h1 className="text-center text-4xl pb-5">FLOWER SHOP</h1>
 
