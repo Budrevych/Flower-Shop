@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { ShopContext } from "../../components/providers/context/ShopContext";
 
 import Logo from "../../assets/img/Flower-shop-Logo.svg";
-import Shopping from "../../assets/img/Shopping.svg";
+import Shopping from "../../assets/img/shopping.svg";
 
 export function Header() {
   const { cart } = useContext(ShopContext);
