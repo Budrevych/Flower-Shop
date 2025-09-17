@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ShopContext } from "../../components/providers/context/ShopContext";
+
 import Shopping from "../../assets/img/Shopping.svg";
 
 export function Header() {
+  const { cart } = useContext(ShopContext);
   const [isOpen, setIsOpen] = useState(false);
+
+  const cartCount = cart.length;
 
   return (
     <header>
@@ -39,9 +44,14 @@ export function Header() {
           <li>
             <Link to="/contacts">Contacts</Link>
           </li>
-          <li>
+          <li className="relative">
             <Link to="/shopping">
               <img className="w-6 h-6" src={Shopping} alt="Shopping" />
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-yellow-700 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
             </Link>
           </li>
         </ul>

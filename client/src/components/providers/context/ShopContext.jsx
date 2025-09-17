@@ -9,6 +9,58 @@ export function ShopProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [selectedShop, setSelectedShop] = useState(null);
 
+  const [cart, setCart] = useState(() => {
+    const saved = localStorage.getItem("cart");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const addToCart = (product) => {
+    setCart((prev) => {
+      const existing = prev.find((item) => item._id === product._id);
+
+      let updated;
+      if (existing) {
+        updated = prev.map((item) =>
+          item._id === product._id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        updated = [...prev, { ...product, quantity: 1 }];
+      }
+
+      localStorage.setItem("cart", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const removeFromCart = (productId) => {
+    setCart((prev) => {
+      const updated = prev.filter((item) => item._id !== productId);
+      localStorage.setItem("cart", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const decreaseQuantity = (productId) => {
+    setCart((prev) => {
+      let updated = prev
+        .map((item) =>
+          item._id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0);
+
+      localStorage.setItem("cart", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const getTotal = () => {
+    return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  };
+
   useEffect(() => {
     fetch(`${backendUrl}/api/shops`)
       .then((res) => res.json())
@@ -30,6 +82,10 @@ export function ShopProvider({ children }) {
     }
   }, [selectedShop]);
 
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   return (
     <ShopContext.Provider
       value={{
@@ -40,6 +96,12 @@ export function ShopProvider({ children }) {
         backendUrl,
         selectedShop,
         setSelectedShop,
+        cart,
+        setCart,
+        addToCart,
+        removeFromCart,
+        decreaseQuantity,
+        getTotal,
       }}
     >
       {children}
