@@ -23,7 +23,7 @@ export function ShoppingCart() {
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="my-4">
+            <div className="flex flex-col justify-between flex-1 my-4">
               <h4 className="text-lg font-semibold py-2">{item.name}</h4>
               <p className="text-gray-600 my-2">
                 {item.price * item.quantity} ₴

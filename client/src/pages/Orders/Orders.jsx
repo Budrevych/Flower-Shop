@@ -29,15 +29,18 @@ export function Orders() {
     setOrder(null);
 
     try {
-      let res = await fetch(`${backendUrl}/api/orders/${searchInput}`);
-      if (!res.ok) {
+      let res;
+      if (searchInput.includes("@")) {
         res = await fetch(
           `${backendUrl}/api/orders?email=${encodeURIComponent(searchInput)}`
         );
-        if (!res.ok) throw new Error("Order not found");
+      } else {
+        res = await fetch(`${backendUrl}/api/orders/${searchInput}`);
       }
-      const data = await res.json();
 
+      if (!res.ok) throw new Error("Order not found");
+
+      const data = await res.json();
       setOrder(Array.isArray(data) ? data[0] : data);
     } catch (err) {
       setError(err.message);
