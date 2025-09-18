@@ -2,11 +2,19 @@ import { useContext } from "react";
 import { ShopContext } from "../../components/providers/context/ShopContext";
 
 export function ShoppingCart() {
-  const { cart, removeFromCart, decreaseQuantity, addToCart } =
+  const { cart, removeFromCart, decreaseQuantity, addToCart, clearCart } =
     useContext(ShopContext);
 
   return (
     <>
+      <div className="flex justify-start mb-4">
+        <button
+          onClick={clearCart}
+          className="px-4 py-2 bg-yellow-700 text-white rounded-lg hover:bg-orange-300 transition-colors cursor-pointer"
+        >
+          Delete all
+        </button>
+      </div>
       <section
         className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3
               2xl:grid-cols-4 gap-6"

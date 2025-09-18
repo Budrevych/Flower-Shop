@@ -80,6 +80,10 @@ export function ShopProvider({ children }) {
     });
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   useEffect(() => {
     fetch(`${backendUrl}/api/shops`)
       .then((res) => res.json())
@@ -127,6 +131,7 @@ export function ShopProvider({ children }) {
         getTotal,
         favorites,
         toggleFavorite,
+        clearCart,
       }}
     >
       {children}
