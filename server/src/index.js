@@ -82,6 +82,7 @@ app.post("/api/orders", async (req, res) => {
   const { shopId, shopName, name, email, phone, address, items } = req.body;
   if (!items || !items.length)
     return res.status(400).json({ error: "Empty cart" });
+
   const total = items.reduce((s, it) => s + it.price * it.quantity, 0);
   const order = new Order({
     shopId,
@@ -93,14 +94,36 @@ app.post("/api/orders", async (req, res) => {
     total,
     items,
   });
+
   await order.save();
   res.status(201).json(order);
 });
 
+app.get("/api/orders", async (req, res) => {
+  const { email } = req.query;
+  if (!email) {
+    return res.status(400).json({ error: "Email is required" });
+  }
+
+  try {
+    const orders = await Order.find({ email }).sort({ createdAt: -1 });
+    if (!orders.length) {
+      return res.status(404).json({ error: "Order not found" });
+    }
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 app.get("/api/orders/:id", async (req, res) => {
-  const order = await Order.findById(req.params.id);
-  if (!order) return res.status(404).json({ error: "Order not found" });
-  res.json(order);
+  try {
+    const order = await Order.findById(req.params.id);
+    if (!order) return res.status(404).json({ error: "Order not found" });
+    res.json(order);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 // ====== Start ======
